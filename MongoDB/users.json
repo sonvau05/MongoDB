@@ -1,6 +1,0 @@
-[
-  {"_id": "U001", "name": "Trần Văn Bình", "email": "binh.tran@example.com", "createdAt": "2025-01-01T00:00:00Z", "tokens": 50000},
-  {"_id": "U002", "name": "Nguyễn Thị Hoa", "email": "hoa.nguyen@example.com", "createdAt": "2025-01-02T00:00:00Z", "tokens": 30000},
-  {"_id": "U003", "name": "Lê Minh Tuấn", "email": "tuan.le@example.com", "createdAt": "2025-01-03T00:00:00Z", "tokens": 20000},
-  {"_id": "U004", "name": "Phạm Ngọc Lan", "email": "lan.pham@example.com", "createdAt": "2025-01-04T00:00:00Z", "tokens": 40000}
-]
