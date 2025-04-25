@@ -1,0 +1,138 @@
+use worldcup2026
+
+db.teams.insertMany([
+  {"_id": 1, "name": "Brazil", "flag": "BRA", "location": "Châu Mỹ"},
+  {"_id": 2, "name": "Germany", "flag": "GER", "location": "Châu Âu"},
+  {"_id": 3, "name": "Argentina", "flag": "ARG", "location": "Châu Mỹ"},
+  {"_id": 4, "name": "France", "flag": "FRA", "location": "Châu Âu"},
+  {"_id": 5, "name": "Italy", "flag": "ITA", "location": "Châu Âu"},
+  {"_id": 6, "name": "Spain", "flag": "ESP", "location": "Châu Âu"},
+  {"_id": 7, "name": "England", "flag": "ENG", "location": "Châu Âu"},
+  {"_id": 8, "name": "Netherlands", "flag": "NED", "location": "Châu Âu"},
+  {"_id": 9, "name": "Portugal", "flag": "POR", "location": "Châu Âu"},
+  {"_id": 10, "name": "Belgium", "flag": "BEL", "location": "Châu Âu"},
+  {"_id": 11, "name": "Croatia", "flag": "CRO", "location": "Châu Âu"},
+  {"_id": 12, "name": "Uruguay", "flag": "URU", "location": "Châu Mỹ"},
+  {"_id": 13, "name": "Vietnam", "flag": "VIE", "location": "Châu Á"},
+  {"_id": 14, "name": "Thailand", "flag": "THA", "location": "Châu Á"},
+  {"_id": 15, "name": "Japan", "flag": "JPN", "location": "Châu Á"},
+  {"_id": 16, "name": "South Korea", "flag": "KOR", "location": "Châu Á"},
+  {"_id": 17, "name": "Australia", "flag": "AUS", "location": "Châu Đại Dương"},
+  {"_id": 18, "name": "Iran", "flag": "IRN", "location": "Châu Á"},
+  {"_id": 19, "name": "Saudi Arabia", "flag": "KSA", "location": "Châu Á"},
+  {"_id": 20, "name": "Egypt", "flag": "EGY", "location": "Châu Phi"},
+  {"_id": 21, "name": "Nigeria", "flag": "NGA", "location": "Châu Phi"},
+  {"_id": 22, "name": "Ghana", "flag": "GHA", "location": "Châu Phi"},
+  {"_id": 23, "name": "Cameroon", "flag": "CMR", "location": "Châu Phi"},
+  {"_id": 24, "name": "Algeria", "flag": "ALG", "location": "Châu Phi"},
+  {"_id": 25, "name": "Morocco", "flag": "MAR", "location": "Châu Phi"},
+  {"_id": 26, "name": "Tunisia", "flag": "TUN", "location": "Châu Phi"},
+  {"_id": 27, "name": "Mexico", "flag": "MEX", "location": "Châu Mỹ"},
+  {"_id": 28, "name": "United States", "flag": "USA", "location": "Châu Mỹ"},
+  {"_id": 29, "name": "Canada", "flag": "CAN", "location": "Châu Mỹ"},
+  {"_id": 30, "name": "Costa Rica", "flag": "CRC", "location": "Châu Mỹ"},
+  {"_id": 31, "name": "Colombia", "flag": "COL", "location": "Châu Mỹ"},
+  {"_id": 32, "name": "Chile", "flag": "CHI", "location": "Châu Mỹ"},
+  {"_id": 33, "name": "Paraguay", "flag": "PAR", "location": "Châu Mỹ"},
+  {"_id": 34, "name": "Peru", "flag": "PER", "location": "Châu Mỹ"},
+  {"_id": 35, "name": "Ecuador", "flag": "ECU", "location": "Châu Mỹ"},
+  {"_id": 36, "name": "Switzerland", "flag": "SUI", "location": "Châu Âu"},
+  {"_id": 37, "name": "Denmark", "flag": "DEN", "location": "Châu Âu"},
+  {"_id": 38, "name": "Sweden", "flag": "SWE", "location": "Châu Âu"},
+  {"_id": 39, "name": "Norway", "flag": "NOR", "location": "Châu Âu"},
+  {"_id": 40, "name": "Poland", "flag": "POL", "location": "Châu Âu"},
+  {"_id": 41, "name": "Ukraine", "flag": "UKR", "location": "Châu Âu"},
+  {"_id": 42, "name": "Russia", "flag": "RUS", "location": "Châu Âu"},
+  {"_id": 43, "name": "Turkey", "flag": "TUR", "location": "Châu Âu"},
+  {"_id": 44, "name": "Serbia", "flag": "SRB", "location": "Châu Âu"},
+  {"_id": 45, "name": "Austria", "flag": "AUT", "location": "Châu Âu"},
+  {"_id": 46, "name": "Hungary", "flag": "HUN", "location": "Châu Âu"},
+  {"_id": 47, "name": "Indonesia", "flag": "IDN", "location": "Châu Á"},
+  {"_id": 48, "name": "Qatar", "flag": "QAT", "location": "Châu Á"}
+]);
+
+db.teams.updateMany(
+    {},
+    [{ $set: { name: { $concat: ["Tuyển ", "$name"] } } }]
+);
+
+db.teams.find({ _id: { $lte: 16 } }).pretty();
+
+db.users.insertMany([
+  {"_id": "U001", "name": "Trần Văn Bình", "email": "binh.tran@example.com", "createdAt": new Date("2025-01-01T00:00:00Z"), "tokens": 50000},
+  {"_id": "U002", "name": "Nguyễn Thị Hoa", "email": "hoa.nguyen@example.com", "createdAt": new Date("2025-01-02T00:00:00Z"), "tokens": 30000},
+  {"_id": "U003", "name": "Lê Minh Tuấn", "email": "tuan.le@example.com", "createdAt": new Date("2025-01-03T00:00:00Z"), "tokens": 20000},
+  {"_id": "U004", "name": "Phạm Ngọc Lan", "email": "lan.pham@example.com", "createdAt": new Date("2025-01-04T00:00:00Z"), "tokens": 40000}
+]);
+
+db.matches.insertMany([
+  {
+    "_id": "M001",
+    "home": 1,
+    "away": 3,
+    "resultHome": 2,
+    "resultAway": 1,
+    "referee": "John Smith",
+    "location": "New York",
+    "gameType": "Vòng bảng",
+    "date": new Date("2026-06-01T15:00:00Z")
+  },
+  {
+    "_id": "M002",
+    "home": 4,
+    "away": 2,
+    "resultHome": 0,
+    "resultAway": 0,
+    "referee": "Maria Garcia",
+    "location": "Los Angeles",
+    "gameType": "Vòng bảng",
+    "date": new Date("2026-06-02T18:00:00Z")
+  },
+  {
+    "_id": "M003",
+    "home": 13,
+    "away": 15,
+    "resultHome": 1,
+    "resultAway": 2,
+    "referee": "Ahmed Hassan",
+    "location": "Toronto",
+    "gameType": "Vòng 1/16",
+    "date": new Date("2026-06-10T20:00:00Z")
+  }
+]);
+
+db.bets.insertMany([
+  {
+    "_id": "B001",
+    "matchId": "M001",
+    "userId": "U001",
+    "betTime": new Date("2025-05-31T10:00:00Z"),
+    "prediction": {
+      "teamId": 13,
+      "score": { "home": 2, "away": 1 }
+    },
+    "tokens": 10000
+  },
+  {
+    "_id": "B002",
+    "matchId": "M002",
+    "userId": "U002",
+    "betTime": new Date("2025-06-14T15:30:00Z"),
+    "prediction": {
+      "teamId": null,
+      "score": { "home": 0, "away": 0 }
+    },
+    "tokens": 5000
+  },
+  {
+    "_id": "B003",
+    "matchId": "M003",
+    "userId": "U003",
+    "betTime": new Date("2025-06-09T12:00:00Z"),
+    "prediction": {
+      "teamId": 4,
+      "score": { "home": 1, "away": 2 }
+    },
+    "tokens": 8000
+  }
+]);
