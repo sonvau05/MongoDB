@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "B001",
+    "matchId": "M001",
+    "userId": "U001",
+    "betTime": "2025-05-31T10:00:00Z",
+    "prediction": {
+      "teamId": 13,
+      "score": { "home": 2, "away": 1 }
+    },
+    "tokens": 10000
+  },
+  {
+    "_id": "B002",
+    "matchId": "M002",
+    "userId": "U002",
+    "betTime": "2025-06-14T15:30:00Z",
+    "prediction": {
+      "teamId": null,
+      "score": { "home": 0, "away": 0 }
+    },
+    "tokens": 5000
+  },
+  {
+    "_id": "B003",
+    "matchId": "M003",
+    "userId": "U003",
+    "betTime": "2025-06-09T12:00:00Z",
+    "prediction": {
+      "teamId": 4,
+      "score": { "home": 1, "away": 2 }
+    },
+    "tokens": 8000
+  }
+]
