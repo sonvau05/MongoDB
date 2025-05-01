@@ -1,0 +1,116 @@
+use testDB
+
+db.students.insertMany([
+    {
+        StudentId: "S001",
+        FirstName: "Nguyen",
+        MiddleName: "Van",
+        LastName: "Anh",
+        Gender: "Nam",
+        RegistrationNumber: "REG001",
+        Birthday: new Date("2000-03-15"),
+        Grade: 85
+    },
+    {
+        StudentId: "S002",
+        FirstName: "Tran",
+        MiddleName: "Thi",
+        LastName: "Bich",
+        Gender: "Nu",
+        RegistrationNumber: "REG002",
+        Birthday: new Date("2002-07-22"),
+        Grade: 92
+    },
+    {
+        StudentId: "S003",
+        FirstName: "Le",
+        MiddleName: "Hoang",
+        LastName: "Cuong",
+        Gender: "Nam",
+        RegistrationNumber: "REG003",
+        Birthday: new Date("1999-11-30"),
+        Grade: 78
+    },
+    {
+        StudentId: "S004",
+        FirstName: "Pham",
+        MiddleName: "Thi",
+        LastName: "Dung",
+        Gender: "Nu",
+        RegistrationNumber: "REG004",
+        Birthday: new Date("2001-05-10"),
+        Grade: 88
+    },
+    {
+        StudentId: "S005",
+        FirstName: "Hoang",
+        MiddleName: "Van",
+        LastName: "Em",
+        Gender: "Nam",
+        RegistrationNumber: "REG005",
+        Birthday: new Date("2000-09-17"),
+        Grade: 90
+    },
+    {
+        StudentId: "S006",
+        FirstName: "Vu",
+        MiddleName: "Thi",
+        LastName: "Hoa",
+        Gender: "Nu",
+        RegistrationNumber: "REG006",
+        Birthday: new Date("2003-02-14"),
+        Grade: 95
+    },
+    {
+        StudentId: "S007",
+        FirstName: "Do",
+        MiddleName: "Van",
+        LastName: "Khanh",
+        Gender: "Nam",
+        RegistrationNumber: "REG007",
+        Birthday: new Date("1998-12-05"),
+        Grade: 82
+    },
+    {
+        StudentId: "S008",
+        FirstName: "Bui",
+        MiddleName: "Thi",
+        LastName: "Lan",
+        Gender: "Nu",
+        RegistrationNumber: "REG008",
+        Birthday: new Date("2004-04-20"),
+        Grade: 87
+    },
+    {
+        StudentId: "S009",
+        FirstName: "Dang",
+        MiddleName: "Van",
+        LastName: "Minh",
+        Gender: "Nam",
+        RegistrationNumber: "REG009",
+        Birthday: new Date("2001-08-25"),
+        Grade: 79
+    },
+    {
+        StudentId: "S010",
+        FirstName: "Ngo",
+        MiddleName: "Thi",
+        LastName: "Ngoc",
+        Gender: "Nu",
+        RegistrationNumber: "REG010",
+        Birthday: new Date("2002-10-12"),
+        Grade: 91
+    }
+])
+
+
+db.students.find({
+    Gender: "Nam",
+    Grade: { $gt: 80 }
+}).pretty()
+
+
+db.students.find({
+    Gender: "Nu",
+    Birthday: { $gt: new Date("2000-05-01") }
+}).pretty()
