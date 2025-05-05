@@ -1,0 +1,79 @@
+use SatisfactionDB
+
+db.createCollection("CustomerFeedback")
+db.CustomerFeedback.insertMany([
+    {
+        customerAvatar: "avatar1.jpg",
+        customerName: "Nguyễn Minh Hoàng",
+        customerAddress: {
+            city: "Hà Nội",
+            district: "Ba Đình",
+            ward: "Phúc Xá",
+            street: "123 Phố Láng Hạ"
+        },
+        contactPhone: "0901234567",
+        feedbackMessage: "Dịch vụ tốt nhưng cần cải thiện tốc độ, có vài từ không hay",
+        feedbackTime: ISODate("2025-04-20T10:30:00Z"),
+        satisfactionRate: 3,
+        originalFeedback: "Dịch vụ tốt nhưng cần cải thiện tốc độ, có vài từ không hay"
+    },
+    {
+        customerAvatar: "avatar2.jpg",
+        customerName: "Trần Bảo Ngọc",
+        customerAddress: {
+            city: "Hà Nội",
+            district: "Ba Đình",
+            ward: "Đội Cấn",
+            street: "45 Phố Ngọc Hà"
+        },
+        contactPhone: "0912345678",
+        feedbackMessage: "Hài lòng với dịch vụ, nhân viên thân thiện",
+        feedbackTime: ISODate("2025-04-22T14:00:00Z"),
+        satisfactionRate: 3,
+        originalFeedback: "Hài lòng với dịch vụ, nhân viên thân thiện"
+    },
+    {
+        customerAvatar: "avatar3.jpg",
+        customerName: "Lê Anh Tuấn",
+        customerAddress: {
+            city: "Hà Nội",
+            district: "Hoàn Kiếm",
+            ward: "Hàng Bông",
+            street: "67 Phố Hàng Gai"
+        },
+        contactPhone: "0923456789",
+        feedbackMessage: "Chất lượng ổn, cần nhanh hơn",
+        feedbackTime: ISODate("2025-04-23T09:15:00Z"),
+        satisfactionRate: 4,
+        originalFeedback: "Chất lượng ổn, cần nhanh hơn"
+    }
+])
+
+db.CustomerFeedback.aggregate([
+    {
+        $match: {
+            "customerAddress.district": "Ba Đình",
+            satisfactionRate: 3
+        }
+    },
+    {
+        $project: {
+            customerName: 1,
+            customerAddress: 1,
+            contactPhone: 1,
+            feedbackMessage: 1,
+            feedbackTime: 1,
+            satisfactionRate: 1
+        }
+    },
+    {
+        $sort: { feedbackTime: -1 }
+    }
+])
+
+db.createCollection("SensitiveWords")
+db.SensitiveWords.insertMany([
+    { word: "không hay", replacement: "***" },
+    { word: "tệ", replacement: "***" },
+    { word: "xấu", replacement: "***" }
+])
