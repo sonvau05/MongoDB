@@ -1,0 +1,85 @@
+db.createCollection("Category")
+db.Category.insertMany([
+    { _id: ObjectId(), name: "Electronics", description: "Electronic products" },
+    { _id: ObjectId(), name: "Clothing", description: "Clothing and accessories" },
+    { _id: ObjectId(), name: "Books", description: "Books and literature" }
+])
+
+db.createCollection("Product")
+db.Product.insertMany([
+    {
+        _id: ObjectId(),
+        ProductName: "Smartphone",
+        Category: db.Category.findOne({name: "Electronics"})._id,
+        Price: 599.99,
+        QuantityInStock: 100,
+        Status: "Available",
+        Description: "Latest model smartphone",
+        CreatedAt: new Date()
+    },
+    {
+        _id: ObjectId(),
+        ProductName: "T-Shirt",
+        Category: db.Category.findOne({name: "Clothing"})._id,
+        Price: 19.99,
+        QuantityInStock: 200,
+        Status: "Available",
+        Description: "Cotton T-Shirt",
+        CreatedAt: new Date()
+    }
+])
+
+db.createCollection("Order")
+db.Order.insertMany([
+    {
+        _id: ObjectId(),
+        ProductId: db.Product.findOne({ProductName: "Smartphone"})._id,
+        Total: 599.99,
+        Quantity: 1,
+        DateBuy: new Date("2025-05-05"),
+        Status: "Completed",
+        CustomerId: ObjectId(),
+        CreatedAt: new Date()
+    },
+    {
+        _id: ObjectId(),
+        ProductId: db.Product.findOne({ProductName: "T-Shirt"})._id,
+        Total: 39.98,
+        Quantity: 2,
+        DateBuy: new Date("2025-05-05"),
+        Status: "Completed",
+        CustomerId: ObjectId(),
+        CreatedAt: new Date()
+    }
+])
+
+db.Order.find({
+    DateBuy: {
+        $gte: ISODate("2025-05-05T00:00:00Z"),
+        $lte: ISODate("2025-05-05T23:59:59Z")
+    }
+}).toArray()
+
+db.Order.find({
+    DateBuy: {
+        $gte: ISODate("2025-05-01T00:00:00Z"),
+        $lte: ISODate("2025-05-31T23:59:59Z")
+    }
+}).toArray()
+
+db.Order.aggregate([
+    {
+        $match: {
+            DateBuy: {
+                $gte: ISODate("2025-05-01T00:00:00Z"),
+                $lte: ISODate("2025-05-31T23:59:59Z")
+            }
+        }
+    },
+    {
+        $group: {
+            _id: null,
+            totalRevenue: { $sum: "$Total" }
+        }
+    }
+])
