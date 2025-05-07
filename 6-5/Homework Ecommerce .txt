@@ -1,0 +1,73 @@
+use ban_hang
+db.TrangThaiDonHang.insertMany([
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439011"), 
+    ten: "Cho xu ly", 
+    mo_ta: "Don hang moi duoc tao", 
+    ngay_tao: new Date(), 
+    ngay_cap_nhat: new Date() 
+  },
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439012"), 
+    ten: "Dang giao", 
+    mo_ta: "Don hang dang duoc van chuyen", 
+    ngay_tao: new Date(), 
+    ngay_cap_nhat: new Date() 
+  }
+])
+db.HangMuc.insertMany([
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439013"), 
+    ten: "Dien tu", 
+    mo_ta: "San pham dien tu", 
+    ngay_tao: new Date(), 
+    ngay_cap_nhat: new Date() 
+  }
+])
+db.SanPham.insertMany([
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439014"), 
+    ten: "Dien thoai XYZ", 
+    ma_hang_muc: ObjectId("507f1f77bcf86cd799439013"), 
+    gia: 5000000, 
+    ton_kho: 100, 
+    mo_ta: "Dien thoai thong minh", 
+    ngay_tao: new Date(), 
+    ngay_cap_nhat: new Date() 
+  }
+])
+db.DonHang.insertMany([
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439015"), 
+    ma_don_hang: "DH12345", 
+    ma_khach_hang: ObjectId("507f1f77bcf86cd799439016"), 
+    ngay_dat: new Date(), 
+    tong_tien: 10000000, 
+    ma_trang_thai: ObjectId("507f1f77bcf86cd799439011"), 
+    ngay_tao: new Date(), 
+    ngay_cap_nhat: new Date() 
+  }
+])
+db.DonHangChiTiet.insertMany([
+  { 
+    _id: ObjectId("507f1f77bcf86cd799439017"), 
+    ma_don_hang: ObjectId("507f1f77bcf86cd799439015"), 
+    ma_san_pham: ObjectId("507f1f77bcf86cd799439014"), 
+    so_luong: 2, 
+    don_gia: 5000000, 
+    tong_phu: 10000000 
+  }
+])
+db.DonHang.find().pretty()
+db.DonHangChiTiet.aggregate([
+  { $match: { ma_don_hang: ObjectId("507f1f77bcf86cd799439015") } },
+  { 
+    $lookup: {
+      from: "SanPham",
+      localField: "ma_san_pham",
+      foreignField: "_id",
+      as: "san_pham"
+    }
+  },
+  { $unwind: "$san_pham" }
+]).pretty()
