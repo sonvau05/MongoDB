@@ -1,0 +1,31 @@
+use student_management
+db.createCollection("students")
+db.students.insertMany([
+    { Id: "SV001", FirstName: "Nguyen", MiddleName: "Van", LastName: "An", Birthday: new Date("2000-05-12"), Phone: "0987654321", Address: "Hanoi", AverageScore: 7.5, Gender: "Male" },
+    { Id: "SV002", FirstName: "Tran", MiddleName: "Thi", LastName: "Binh", Birthday: new Date("2002-03-25"), Phone: "0971234567", Address: "Hanoi", AverageScore: 8.0, Gender: "Female" },
+    { Id: "SV003", FirstName: "Le", MiddleName: "Duc", LastName: "Cuong", Birthday: new Date("1999-11-10"), Phone: "0967891234", Address: "Ho Chi Minh", AverageScore: 6.5, Gender: "Male" },
+    { Id: "SV004", FirstName: "Pham", MiddleName: "Minh", LastName: "Dung", Birthday: new Date("2001-07-19"), Phone: "0943219876", Address: "Hanoi", AverageScore: 9.0, Gender: "Male" },
+    { Id: "SV005", FirstName: "Hoang", MiddleName: "Thi", LastName: "E", Birthday: new Date("2003-02-14"), Phone: "0934567890", Address: "Da Nang", AverageScore: 7.0, Gender: "Female" },
+    { Id: "SV006", FirstName: "Vu", MiddleName: "Van", LastName: "Hieu", Birthday: new Date("2000-09-30"), Phone: "0912345678", Address: "Hanoi", AverageScore: 8.5, Gender: "Male" },
+    { Id: "SV007", FirstName: "Do", MiddleName: "Thi", LastName: "Khanh", Birthday: new Date("2002-12-05"), Phone: "0998765432", Address: "Hanoi", AverageScore: 7.8, Gender: "Female" },
+    { Id: "SV008", FirstName: "Bui", MiddleName: "Quoc", LastName: "Long", Birthday: new Date("1998-04-22"), Phone: "0981234567", Address: "Hanoi", AverageScore: 6.8, Gender: "Male" },
+    { Id: "SV009", FirstName: "Nguyen", MiddleName: "Thi", LastName: "Mai", Birthday: new Date("2001-06-17"), Phone: "0976543210", Address: "Hue", AverageScore: 8.2, Gender: "Female" },
+    { Id: "SV010", FirstName: "Trinh", MiddleName: "Van", LastName: "Nam", Birthday: new Date("1997-08-08"), Phone: "0965432109", Address: "Hanoi", AverageScore: 7.2, Gender: "Male" }
+])
+db.students.find({
+    Gender: "Male",
+    Birthday: { $lt: new Date("2005-05-07") },
+    Address: "Hanoi"
+}).pretty()
+db.students.updateMany(
+    {},
+    [{ $set: { AverageScore: { $multiply: ["$AverageScore", 1.15] } } }]
+)
+db.students.find(
+    {},
+    {
+        _id: 0,
+        FullName: { $concat: ["$FirstName", " ", "$MiddleName", " ", "$LastName"] },
+        AverageScore: 1
+    }
+).pretty()
